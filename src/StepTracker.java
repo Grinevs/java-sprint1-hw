@@ -7,6 +7,8 @@ public class StepTracker {
     String[] monthList = {"январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь",
             "октябрь", "ноябрь", "декабрь"};
     int goalSteps = 10000;
+    Converter converter = new Converter(); // правильно что я создаю экземляр класса в другом классе?
+                                            // как то по другому надо их свзять вроде?
 
     StepTracker() {
         dataForYear = new LinkedHashMap<>();
@@ -70,7 +72,7 @@ public class StepTracker {
 
         void addSteps(int day, int steps) {
             month[day-1]=steps;
-            System.out.println(Arrays.toString(month));
+            // System.out.println(Arrays.toString(month)); // показывает сразу массив месяца, оч удобно для проверки :)
         }
 
         String returnSteps(int i) {
@@ -88,6 +90,9 @@ public class StepTracker {
             System.out.println("Количество пройденных шагов по дням " + stats);
             System.out.println("Общее количество шагов за месяц; " +Integer.toString(commonStepsByMonth(numberMonth)));
             System.out.println("Среднее количество шагов; " +String.valueOf(commonStepsByMonth(numberMonth)/30));
+            System.out.println("Лучшая серия: " + bestStrictOfDays(numberMonth) + " дней");
+            System.out.println("Пройденная дистанция: " + converter.stepToDistance(commonStepsByMonth(numberMonth)) + " км");
+            System.out.println("Количество сожжённых килокалорий: " + converter.stepToKilocalories(commonStepsByMonth(numberMonth)));
         }
     }
 
@@ -99,6 +104,28 @@ public class StepTracker {
         return stats;
     }
 
+    Integer bestStrictOfDays(int numberMonth) {
+        int dayStrict = 0;
+        int days = 0;
+        for (int i=0; i<dataForYear.get(numberMonth).month.length; i++) {
+            if (Integer.parseInt(dataForYear.get(numberMonth).returnSteps(i)) > goalSteps) {
+                days+=1;
+            } else {
+                days=0;
+            }
 
+            if (dayStrict < days) {
+                dayStrict=days;
+            }
+        }
+
+    return dayStrict;
+    }
+    Integer changeGoal (int goal) {
+        if (goal>0) {
+            goalSteps=goal;
+        }
+        return goalSteps;
+    }
 }
 

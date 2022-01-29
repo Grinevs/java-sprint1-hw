@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         StepTracker stepTracker = new StepTracker();
         while (true) {
             printMenu();
@@ -23,10 +24,10 @@ public class Main {
                 String month = scanner.next();
                 System.out.println("Статистика за " + stepTracker.monthList[stepTracker.validationMonth(month)-1]);
                 stepTracker.printMonthStat(month);
-
             } else if (command == 3) {
                 System.out.println("Введите вашу цель по количеству шагов в день");
-                stepTracker.goalSteps= scanner.nextInt();
+                int goalSteps= scanner.nextInt();
+                System.out.println("Текущая цель " + stepTracker.changeGoal(goalSteps) + " шагов");
             } else if (command == 0) {
                 System.out.println("Хорошего дня!");
                 break;
