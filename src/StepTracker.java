@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 
@@ -78,7 +77,8 @@ public class StepTracker {
             System.out.println("Среднее количество шагов; " + String.valueOf(commonStepsByMonth(numberMonth) / 30));
             System.out.println("Лучшая серия: " + bestStrictOfDays(numberMonth) + " дней");
             System.out.println("Пройденная дистанция: " + converter.stepToDistance(commonStepsByMonth(numberMonth)) + " км");
-            System.out.println("Количество сожжённых килокалорий: " + converter.stepToKilocalories(commonStepsByMonth(numberMonth)));
+            String kiloCal = converter.stepToKilocalories(commonStepsByMonth(numberMonth));
+            System.out.println("Количество сожжённых килокалорий: " + kiloCal);
         }
     }
 
