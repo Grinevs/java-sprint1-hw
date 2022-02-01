@@ -8,7 +8,6 @@ public class Main {
         while (true) {
             printMenu();
             int command = scanner.nextInt();
-
             if (command == 1) {
                 print("Введите номер месяца или его название");
                 String month = scanner.next();
@@ -39,6 +38,8 @@ public class Main {
             }
         }
     }
+
+
 
     public static void print(String message) {
         System.out.println(message);

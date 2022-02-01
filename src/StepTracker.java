@@ -2,8 +2,7 @@ import java.util.LinkedHashMap;
 
 public class StepTracker {
     LinkedHashMap<Integer, MonthData> dataForYear;
-    String[] monthList = {"январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь",
-            "октябрь", "ноябрь", "декабрь"};
+    String[] monthList = {"январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"};
     int goalSteps = 10000;
     Converter converter = new Converter(); // правильно что я создаю экземляр класса в другом классе?
     // как то по другому надо их свзять вроде?
@@ -13,7 +12,6 @@ public class StepTracker {
         for (int i = 1; i <= 12; i++) {
             dataForYear.put(i, new MonthData());
         }
-
     }
 
     Integer validationMonth(String month) {
@@ -75,7 +73,8 @@ public class StepTracker {
             System.out.println("Общее количество шагов за месяц; " + commonStepsByMonth(numberMonth));
             System.out.println("Среднее количество шагов; " + String.valueOf(commonStepsByMonth(numberMonth) / 30));
             System.out.println("Лучшая серия: " + bestStrictOfDays(numberMonth) + " дней");
-            System.out.println("Пройденная дистанция: " + converter.stepToDistance(commonStepsByMonth(numberMonth)) + " км");
+            String distance = converter.stepToDistance(commonStepsByMonth(numberMonth));
+            System.out.println("Пройденная дистанция: " + distance + " км");
             String kiloCal = converter.stepToKilocalories(commonStepsByMonth(numberMonth));
             System.out.println("Количество сожжённых килокалорий: " + kiloCal);
         }
